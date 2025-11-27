@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    #drop-zone {
+        width: 300px;
+        height: 200px;
+        border: 2px dashed #ccc;
+        padding: 20px;
+        text-align: center;
+        line-height: 200px;
+        font-size: 1.2em;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+    /* 当有东西拖进来时的高亮样式 */
+    #drop-zone.drag-over {
+        background-color: #f0f8ff;
+        border-color: #007bff;
+    }
+    .color-box {
+        width: 80px;
+        height: 80px;
+        margin: 10px;
+        display: inline-block;
+        color: white;
+        text-align: center;
+        line-height: 80px;
+        cursor: grab; /* 提示用户这是可拖动的 */
+    }
+</style>
+</head>
+<body>
+
+    <h3>请将下面的颜色块拖到虚线框中：</h3>
+
+    <div id="red-box" class="color-box" style="background-color: red;" draggable="true" data-color="red">Red</div>
+    <div id="green-box" class="color-box" style="background-color: green;" draggable="true" data-color="green">Green</div>
+    <div id="blue-box" class="color-box" style="background-color: blue;" draggable="true" data-color="blue">Blue</div>
+
+    <hr>
+
+    <div id="drop-zone">将颜色块拖到这里</div>
+
+<script>
+    const colorBoxes = document.querySelectorAll('.color-box');
+    const dropZone = document.getElementById('drop-zone');
+
+    // --- 1. 为可拖动元素添加 dragstart 事件 ---
+    colorBoxes.forEach(box => {
+        box.addEventListener('dragstart', (event) => {
+            console.log('拖动开始！');
+            // 设置要传递的数据：颜色值
+            const color = event.target.dataset.color;
+            event.dataTransfer.setData('text/plain', color);
+            // （可选）设置拖动效果
+            event.dataTransfer.effectAllowed = 'copy';
+        });
+    });
+
+    // --- 2. 为放置目标添加事件 ---
+
+    // 当元素进入目标区域
+    dropZone.addEventListener('dragenter', (event) => {
+        // 阻止默认行为，以允许放置
+        event.preventDefault();
+        dropZone.classList.add('drag-over'); // 添加高亮样式
+        console.log('元素进入目标区域');
+    });
+
+    // 当元素在目标区域内移动
+    dropZone.addEventListener('dragover', (event) => {
+        // !!! 这是最关键的一步，必须阻止默认行为，否则 drop 事件不会触发
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy'; // 提示用户是复制操作
+    });
+
+    // 当元素离开目标区域
+    dropZone.addEventListener('dragleave', (event) => {
+        dropZone.classList.remove('drag-over'); // 移除高亮样式
+        console.log('元素离开目标区域');
+    });
+
+    // 当元素在目标区域内被释放
+    dropZone.addEventListener('drop', (event) => {
+        // 阻止默认行为（比如浏览器默认会打开链接或文件）
+        event.preventDefault(); 
+        
+        // 从 dataTransfer 对象获取数据
+        const color = event.dataTransfer.getData('text/plain');
+        console.log(`放置成功！获取到的颜色是: ${color}`);
+        
+        // 执行最终操作
+        dropZone.style.backgroundColor = color;
+        dropZone.textContent = `背景色已变为 ${color}!`;
+        
+        // 清理样式
+        dropZone.classList.remove('drag-over');
+    });
+
+</script>
+</body>
+</html>

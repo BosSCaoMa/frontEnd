@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>为 HTML 添加新元素</title>
+<script>
+document.createElement("myHero")
+
+</script>
+<style>
+myHero {
+    display: block;
+    background-color: #ddd;
+    padding: 20px;
+    font-size: 20px;
+}
+</style> 
+</head>
+ 
+<body>
+<h2 style="text-align:center;">HTML5</h2>
+
+<myHero>自定义格式的新文件</myHero>
+
+<canvas id="signature-pad" width="180" height="200" style="border: 1px solid #000;"></canvas>
+<script>
+    const canvas = document.getElementById('signature-pad');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    canvas.addEventListener('mousedown', () => {
+        drawing = true;
+        ctx.beginPath(); // 开始新路径
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        drawing = false;
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (!drawing) return;
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = 'blue';
+        // 绘制线条
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+    });
+
+    
+</script>
+    
+
+
+<!-- 本地存储代码 -->
+
+<script>
+    // 保存数据到本地存储
+    function saveData() {
+        const data = document.getElementById('data-input').value;
+        localStorage.setItem('myData', data);
+        alert('数据已保存！');
+    }
+
+    // 从本地存储加载数据
+    function loadData() {
+        const savedData = localStorage.getItem('myData');
+        if (savedData) {
+            document.getElementById('data-input').value = savedData;
+            alert('数据已加载！');
+        } else {
+            alert('没有找到保存的数据。');
+        }
+    }
+</script>
+
+    <h3>本地存储示例</h3>
+    <input type="text" id="data-input" placeholder="输入一些数据">
+    <button onclick="saveData()">保存数据</button>
+    <button onclick="loadData()">加载数据</button>
+
+</body>
+</html>

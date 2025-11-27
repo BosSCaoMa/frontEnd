@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>表单示例</title>
+    <style>
+        form { max-width: 400px; margin: 20px; padding: 20px; border: 1px solid #eee; border-radius: 8px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 10px 20px; background: #2c7be5; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #1967d2; }
+    </style>
+</head>
+<body>
+    <!-- 表单容器：action指定提交地址，method指定提交方式 -->
+    <form action="/api/tae" method="POST">
+        <!-- 文本输入框 -->
+        <div class="form-group">
+            <label for="username">用户名：</label>
+            <input type="text" id="username" name="username" placeholder="请输入用户名" required>
+        </div>
+
+        <!-- 密码输入框 -->
+        <div class="form-group">
+            <label for="password">密码：</label>
+            <input type="password" id="password" name="password" placeholder="请输入密码" required>
+        </div>
+
+        <!-- 下拉菜单 -->
+        <div class="form-group">
+            <label for="city">所在城市：</label>
+            <select id="city" name="city">
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="guangzhou">广州</option>
+            </select>
+        </div>
+
+        <!-- 复选框 -->
+        <div class="form-group">
+            <label>兴趣爱好：</label>
+            <input type="checkbox" name="hobby" value="reading"> 阅读
+            <input type="checkbox" name="hobby" value="coding"> 编程
+            <input type="checkbox" name="hobby" value="sports"> 运动
+        </div>
+
+        <!-- 多行文本框 -->
+        <div class="form-group">
+            <label for="desc">个人简介：</label>
+            <textarea id="desc" name="desc" rows="3" placeholder="请输入个人简介"></textarea>
+        </div>
+
+        <!-- 提交按钮 -->
+        <button type="submit">提交</button>
+        <!-- 重置按钮 -->
+        <button type="reset" style="background: #6c757d; margin-left: 10px;">重置</button>
+    </form>
+</body>
+</html>

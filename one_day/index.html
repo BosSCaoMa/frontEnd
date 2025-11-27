@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HTML学习</title>
+
+</head>
+<body>
+ 
+<h1>标题</h1>
+<a href="http://212.64.32.116/main.html">链接</a>
+<p></p>
+<a href="http://212.64.32.116/main.html"><img src="../pic/1.png" width="150" height="180"></a>
+<img src="image.jpg" alt="图片不存在时的文字">
+<p></p>
+
+<abbr title="HyperText Markup Language">放到上面有提示词</abbr>
+
+<input type="checkbox" checked> 复选框
+
+<p>输入框、不可输入框、初始值、提示词</p>
+<input type="text">
+<input type="text" disabled>
+<input type="text" value="初始值">
+<input type="text" placeholder="Enter your name">
+
+<p></p>
+<button onclick="alert('Button clicked!')">点击时触发</button>
+<p></p>
+<div onmouseover="this.style.backgroundColor='yellow'">悬停时触发</div>
+<p></p>
+
+<!-- 监听输入框内容变化（失去焦点时触发） -->
+<input type="text" onchange="handleInputChange(this) " placeholder="修改后失去焦点触发">
+
+<script>
+  function handleInputChange(element) {
+    console.log('输入框新值：', element.value);
+    alert('输入内容已修改为：' + element.value);
+  }
+</script>
+
+<p>这个段落<br>演示了利用br<br>不换段落分行的效果</p>
+
+<p style="color:rgb(22, 188, 210);margin-left:20px;">内联CSS</p>
+<p style="background-color:green;">内联CSS + 背景颜色</p>
+<h1 style="text-align:center;">居中对齐的标题</h1>
+
+<script>
+document.write("<h3>这是用脚本来写的</h3>");
+</script>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>字符实体示例</title>
+</head>
+<body>
+    <p>1. 特殊符号：&lt;div&gt; 标签（用&lt;和&gt;替代<和>）</p>
+    <p>2. 空格：这是&nbsp;&nbsp;&nbsp;三个连续空格（普通空格只会显示一个）</p>
+    <p>3. 特殊符号：© 2025 版权所有（&copy;）</p>
+    <p>4. 货币符号：€100（&euro;）、¥50（&yen;）</p>
+    <p>5. 数学符号：3 &times; 4 = 12（&times;），8 &divide; 2 = 4（&divide;）</p>
+    <p>6. &amp; 符号本身需要用&amp;表示</p>
+</body>
+</html>

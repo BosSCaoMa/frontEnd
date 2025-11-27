@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 新的 Input 类型展示</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        form {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .input-group {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        .input-group:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #34495e;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* 保证 padding 不会撑大宽度 */
+            font-size: 16px;
+        }
+        /* 对 range 类型特殊处理 */
+        input[type="range"] {
+            padding: 0;
+        }
+        .description {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 8px;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "Courier New", Courier, monospace;
+            color: #c0392b;
+        }
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>HTML5 新的 Input 类型</h1>
+    <p>HTML5 提供了多个新的表单输入类型，它们不仅能提供更友好的用户界面（如日期选择器、颜色选择器），还内置了基础的格式验证功能。</p>
+
+    <form onsubmit="alert('表单提交成功！'); return false;">
+
+        <h2>输入类型实例演示</h2>
+
+        <!-- color -->
+        <div class="input-group">
+            <label for="color-input">颜色 (color)</label>
+            <input type="color" id="color-input" name="color-input" value="#3498db">
+            <p class="description">提供一个颜色选择器。<code>type="color"</code></p>
+        </div>
+
+        <!-- date -->
+        <div class="input-group">
+            <label for="date-input">日期 (date)</label>
+            <input type="date" id="date-input" name="date-input">
+            <p class="description">提供一个日期选择器（年月日）。<code>type="date"</code></p>
+        </div>
+
+        <!-- datetime-local -->
+        <div class="input-group">
+            <label for="datetime-local-input">本地日期和时间 (datetime-local)</label>
+            <input type="datetime-local" id="datetime-local-input" name="datetime-local-input">
+            <p class="description">提供日期和时间选择器（无时区）。<code>type="datetime-local"</code></p>
+        </div>
+        
+        <!-- email -->
+        <div class="input-group">
+            <label for="email-input">电子邮件 (email)</label>
+            <input type="email" id="email-input" name="email-input" placeholder="user@example.com">
+            <p class="description">要求输入一个或多个合法的电子邮箱地址。提交时会自动验证格式。<code>type="email"</code></p>
+        </div>
+        
+        <!-- month -->
+        <div class="input-group">
+            <label for="month-input">月份 (month)</label>
+            <input type="month" id="month-input" name="month-input">
+            <p class="description">提供一个月份和年份选择器。<code>type="month"</code></p>
+        </div>
+        
+        <!-- number -->
+        <div class="input-group">
+            <label for="number-input">数字 (number)</label>
+            <input type="number" id="number-input" name="number-input" placeholder="输入一个数字" min="1" max="100" step="2">
+            <p class="description">用于输入数字，可以设置最小值 <code>min</code>、最大值 <code>max</code> 和步长 <code>step</code>。<code>type="number"</code></p>
+        </div>
+        
+        <!-- range -->
+        <div class="input-group">
+            <label for="range-input">范围 (range)</label>
+            <input type="range" id="range-input" name="range-input" min="0" max="50" value="25">
+            <p class="description">显示为一个滑块，用于在指定范围内选择一个不精确的值。<code>type="range"</code></p>
+        </div>
+
+        <!-- search -->
+        <div class="input-group">
+            <label for="search-input">搜索 (search)</label>
+            <input type="search" id="search-input" name="search-input" placeholder="输入搜索词...">
+            <p class="description">专门用于搜索框，在某些浏览器中输入内容后会显示一个清除按钮 (×)。<code>type="search"</code></p>
+        </div>
+        
+        <!-- tel -->
+        <div class="input-group">
+            <label for="tel-input">电话号码 (tel)</label>
+            <input type="tel" id="tel-input" name="tel-input" placeholder="123-4567-8901" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+            <p class="description">用于输入电话号码。它本身不进行验证，但移动设备会弹出数字键盘。可配合 <code>pattern</code> 属性进行格式验证。<code>type="tel"</code></p>
+        </div>
+        
+        <!-- time -->
+        <div class="input-group">
+            <label for="time-input">时间 (time)</label>
+            <input type="time" id="time-input" name="time-input">
+            <p class="description">提供一个时间选择器（时、分，有时有秒）。<code>type="time"</code></p>
+        </div>
+
+        <!-- url -->
+        <div class="input-group">
+            <label for="url-input">网址 (url)</label>
+            <input type="url" id="url-input" name="url-input" placeholder="https://example.com">
+            <p class="description">要求输入一个合法的 URL 地址。提交时会自动验证格式。<code>type="url"</code></p>
+        </div>
+
+        
+        <br>
+        <button type="submit">提交表单</button>
+
+    </form>
+</body>
+</html>
